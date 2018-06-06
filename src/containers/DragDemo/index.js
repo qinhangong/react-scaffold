@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Checkbox } from 'antd';
 import styles from './index.less';
-console.log(styles)
+
 class DragDemo extends Component {
     componentDidMount() {
         //console.log(this.props.history)

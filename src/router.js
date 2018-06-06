@@ -6,7 +6,7 @@ import DragDemo from './containers/DragDemo';
 
 function Routers() {
     return <HashRouter>
-        <div>
+        <div style={{height:'100%'}}>
             <Route exact path='/' component={Home} />
             <Route path='/drag' component={DragDemo} />
         </div>

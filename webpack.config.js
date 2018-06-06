@@ -21,12 +21,13 @@ module.exports = {
                 test: /\.less/,
                 use: [
                     'style-loader',
-                    { loader: 'css-loader', options: { modules: true } },
-                    'less-loader'
+                    { loader: 'css-loader', options: { modules: true,autoprefixer:false } },
+                    "postcss-loader",
+                    'less-loader',
                 ]
             },{
                 test:/\.(png|jpg|svg)$/,
-                loader:'url-loader?limit=50'
+                loader:'url-loader?limit=5000'
             }
         ]
     },
