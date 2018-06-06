@@ -1,8 +1,5 @@
-import React,{Component} from 'react';
-import {render} from 'react-dom';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import Routers from './router';
 
-function App(){
-    return <div>hello world</div>
-}
-
-render(<App />,document.body)
+render(<Routers />, document.getElementById('root'))
