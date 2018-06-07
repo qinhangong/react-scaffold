@@ -1,0 +1,5 @@
+export const INCREMENT = 'INCREMENT';
+export const DECREMENT = 'DECREMENT';
+export const INCREMENTASYNC = 'INCREMENTASYNC';
+export const DECREMENTASYNC = 'DECREMENTASYNC';
+
