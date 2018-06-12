@@ -15,6 +15,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        console.log('mode===',process.env.NODE_ENV)
         const img = new Image();
         img.src = imgUrl;
         img.onload = () => {

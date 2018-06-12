@@ -1,9 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractCSS = new ExtractTextPlugin('dist/css.antd.css');
 const extractLESS = new ExtractTextPlugin('dist/css.app.css');
+
 module.exports = {
     mode: 'development',
     entry: './src/index.js',
@@ -37,6 +39,7 @@ module.exports = {
         port: 8888,
         contentBase: path.join(__dirname, "dist"),
         open: true,
+        hot:true,
         historyApiFallback: true
     },
     plugins: [
@@ -45,6 +48,7 @@ module.exports = {
             template: 'assets/index.html'
         }),
         new CleanWebpackPlugin(['dist']),
+        new webpack.HotModuleReplacementPlugin(),
         extractCSS,
         extractLESS,
     ]
