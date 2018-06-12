@@ -1,6 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractCSS = new ExtractTextPlugin('dist/css.antd.css');
+const extractLESS = new ExtractTextPlugin('dist/css.app.css');
 module.exports = {
     mode: 'development',
     entry: './src/index.js',
@@ -16,15 +19,14 @@ module.exports = {
                 loader: 'babel-loader',
             }, {
                 test: /\.css/,
-                use: ['style-loader', 'css-loader'],
+                use: extractCSS.extract(['css-loader'])
             }, {
                 test: /\.less/,
-                use: [
-                    'style-loader',
-                    { loader: 'css-loader', options: { modules: true,autoprefixer:false } },
-                    "postcss-loader",
-                    'less-loader',
-                ]
+                use:extractLESS.extract([
+                        { loader: 'css-loader', options: { modules: true,autoprefixer:false } },
+                        "postcss-loader",
+                        'less-loader',
+                ])
             },{
                 test:/\.(png|jpg|svg)$/,
                 loader:'url-loader?limit=5000'
@@ -32,8 +34,10 @@ module.exports = {
         ]
     },
     devServer: {
+        port: 8888,
         contentBase: path.join(__dirname, "dist"),
-        port: 8888
+        open: true,
+        historyApiFallback: true
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -41,5 +45,7 @@ module.exports = {
             template: 'assets/index.html'
         }),
         new CleanWebpackPlugin(['dist']),
+        extractCSS,
+        extractLESS,
     ]
 }
